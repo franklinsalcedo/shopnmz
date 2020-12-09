@@ -1,33 +1,50 @@
 
 $animate: all 100ms;
-#mainMenu {
-    background-color: #333333;
-    font-family: 'Playfair Display', serif;
-    font-size: 18px;
-    padding: 5px 0;
-    a {
-        color: #FFFFFF;
-        position: relative;
-        transition: $animate;
-        &:before,
-        &:after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            width: 0px;
-            height: 2px;
-            margin: 5px 0 0;
-            transition: $animate;
-            transition-duration: 0.75s;
-            opacity: 0;
-            background-color: darken(orange,5%);
-            left: 0;
+header {
+    h1 {
+        img {
+            margin: 0 auto;
         }
-        &:hover {
+    }
+    #mainMenu {
+        background-color: #333333;
+        font-family: 'Playfair Display', serif;
+        font-size: 18px;
+        padding: 5px 0;
+        a {
+            color: #FFFFFF;
+            position: relative;
+            transition: $animate;
             &:before,
             &:after {
-                width: 100%;
-                opacity: 1;
+                content: "";
+                position: absolute;
+                bottom: 0;
+                width: 0px;
+                height: 2px;
+                margin: 5px 0 0;
+                transition: $animate;
+                transition-duration: 0.75s;
+                opacity: 0;
+                background-color: darken(orange,5%);
+                left: 0;
+            }
+            &:hover {
+                &:before,
+                &:after {
+                    width: 100%;
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 1025px) {
+    header {
+        h1 {
+            img {
+                max-width: 150px!important;
             }
         }
     }
