@@ -1,0 +1,11 @@
+.product-thumb {
+    border: none;
+    .card-img-top {
+        border-radius: 0;    
+    }
+    .card-text {
+        h3 {
+            font-size: 14px;
+        }
+    }
+}

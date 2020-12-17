@@ -1,0 +1,35 @@
+.icon-cart {
+    color: #333333;
+    font-size: 35px;
+    position: relative;
+    transition: color 300ms;
+    &:hover {
+        color: #ff7d00;
+        .total-items-counter {
+            color: #ff7d00;
+        }
+    }
+    .total-items-counter {
+        color: #333333;
+        font-family: 'Oswald', sans-serif;
+        font-size: 11px;
+        font-weight: bold;
+        text-align: center;
+        width: 16px;
+        height: 16px;
+        display: block;
+        border-radius: 10px;
+        position: absolute;
+        top: 25px;
+        right: 9px;
+    }
+}
+
+@media (min-width: 1025px) {
+    .icon-cart {
+        .total-items-counter {
+            top: 32px;
+            right: 17px;
+        }
+    }
+}

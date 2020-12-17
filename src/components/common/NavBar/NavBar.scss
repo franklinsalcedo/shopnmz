@@ -6,9 +6,12 @@ header {
             margin: 0 auto;
         }
     }
+    .menu-icon-mobile {
+        font-size: 34px;
+        font-weight: bold;
+    }
     #mainMenu {
         background-color: #333333;
-        font-family: 'Playfair Display', serif;
         font-size: 18px;
         padding: 5px 0;
         a {
@@ -26,7 +29,7 @@ header {
                 transition: $animate;
                 transition-duration: 0.75s;
                 opacity: 0;
-                background-color: darken(orange,5%);
+                background-color: #ff7d00;
                 left: 0;
             }
             &:hover {
