@@ -5,7 +5,7 @@ function App() {
   return (
     <div className="App">
       <Nav />
-      <FeaturedProducts></FeaturedProducts>
+      <FeaturedProducts />
     </div>
   );
 }

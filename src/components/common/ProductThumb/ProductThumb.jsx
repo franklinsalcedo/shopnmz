@@ -9,6 +9,7 @@ function ProductThumb(props) {
                 <div className="card-body">
                     <div className="text-center card-text">
                         <h3>{ props.title }</h3>
+                        <p>$USD { props.price }</p>
                         <ItemCount stock={8} initial={0} />
                     </div>
                 </div>

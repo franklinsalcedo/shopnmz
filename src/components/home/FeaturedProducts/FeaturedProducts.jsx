@@ -1,17 +1,12 @@
 import './FeaturedProducts.scss';
-import ProductThumb from '../../common/ProductThumb/ProductThumb';
+import ItemList from '../../common/ItemList/ItemList';
 
-function ItemListContainer() {
+function FeaturedProducts() {
     return (
         <div className="container">
-            <div className="row py-3 py-md-5">
-                <ProductThumb title="Blusa Logoa" />
-                <ProductThumb title="Blusa Rio" />
-                <ProductThumb title="Blazer Lapa" />
-                <ProductThumb title="Blazer Mogador" />
-            </div>
+            <ItemList quantity={4} />
         </div>
     );
 };
 
-export default ItemListContainer
+export default FeaturedProducts;
