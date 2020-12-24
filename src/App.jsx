@@ -1,11 +1,13 @@
-import Nav from './components/common/NavBar/NavBar';
+import NavBar from './components/common/NavBar/NavBar';
 import FeaturedProducts from './components/home/FeaturedProducts/FeaturedProducts';
+import ItemDetailContainer from './components/common/ItemDetailContainer/ItemDetailContainer';
 
 function App() {
   return (
     <div className="App">
-      <Nav />
+      <NavBar />
       <FeaturedProducts />
+      <ItemDetailContainer />
     </div>
   );
 }

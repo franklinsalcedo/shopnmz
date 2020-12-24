@@ -4,7 +4,7 @@ import Logo from '../../../assets/logo-nmz.png';
 import { RiMenu2Fill } from 'react-icons/ri';
 import CartWidget from '../CartWidget/CartWidget';
 
-function Nav() {
+function NavBar() {
     return (
         <header>
             <div className="container-fluid">
@@ -38,4 +38,4 @@ function Nav() {
     );
 }
 
-export default Nav;
+export default NavBar;
