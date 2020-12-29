@@ -1,14 +1,27 @@
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import NavBar from './components/common/NavBar/NavBar';
-import FeaturedProducts from './components/home/FeaturedProducts/FeaturedProducts';
+import Footer from './components/common/Footer/Footer';
+import FeaturedProducts from './components/FeaturedProducts/FeaturedProducts';
+import Category from './components/Category/Category';
 import ItemDetailContainer from './components/common/ItemDetailContainer/ItemDetailContainer';
 
 function App() {
   return (
-    <div className="App">
+    <BrowserRouter>
       <NavBar />
-      <FeaturedProducts />
-      <ItemDetailContainer />
-    </div>
+      <Switch>
+        <Route exact path="/">
+          <FeaturedProducts />
+        </Route>
+        <Route path="/categoria/:categoryHandle">
+          <Category />
+        </Route>
+        <Route path="/producto/:productHandle">
+          <ItemDetailContainer />
+        </Route>
+      </Switch>
+      <Footer />
+    </BrowserRouter>
   );
 }
 

@@ -8,27 +8,37 @@ function ItemList(props) {
     const products = [
         {
             id: 1,
+            handle: 'blusa-rio',
             title: 'Blusa Río',
+            image: 'blusa-rio.jpg',
             price: 49
         },
         {
             id: 2,
+            handle: 'blusa-santa-rita',
             title: 'Blusa Santa Rita',
+            image: 'blusa-santa-rita.jpg',
             price: 80
         },
         {
             id: 3,
+            handle: 'blazer-mogador',
             title: 'Blazer Mogador',
+            image: 'blazer-mogador.jpg',
             price: 100
         },
         {
             id: 4,
+            handle: 'blusa-logoa',
             title: 'Blusa Logoa',
+            image: 'blusa-logoa.jpg',
             price: 30
         },
         {
             id: 5,
+            handle: 'blusa-mamounia',
             title: 'Blusa Mamounia',
+            image: 'blusa-mamounia.jpg',
             price: 25
         }
     ];
@@ -51,17 +61,16 @@ function ItemList(props) {
 
     useEffect(() => {
         getProductsFromDB();
-    }, []);
+    });
 
     return (
         <div className="row py-3 py-md-5">
             {
                 items.length ?
                     <>
-                    <h2 className="col-12 text-center">Featured Products</h2>
                         {
                             items.slice(0,limit).map((item, index) => (
-                                <ProductThumb id={item.id} title={item.title} price={item.price} />
+                                <ProductThumb id={item.id} title={item.title} price={item.price} handle={item.handle} image={item.image} />
                             ))
                         }
                     </>

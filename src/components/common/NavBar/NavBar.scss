@@ -1,7 +1,7 @@
 
 $animate: all 100ms;
 header {
-    h1 {
+    .logo {
         img {
             margin: 0 auto;
         }
@@ -40,12 +40,20 @@ header {
                 }
             }
         }
+        a.active {
+            color: #ff7d00;
+            &:before,
+            &:after {
+                width: 100%;
+                opacity: 1;
+            }
+        }
     }
 }
 
 @media (min-width: 1025px) {
     header {
-        h1 {
+        .logo {
             img {
                 max-width: 150px!important;
             }

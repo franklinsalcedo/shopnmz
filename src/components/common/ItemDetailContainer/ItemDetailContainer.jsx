@@ -5,12 +5,14 @@ import './ItemDetailContainer.scss';
 function ItemDetailContainer() {
     const [product, setProduct] = useState();
     const data = {
-        id: 2,
-        title: 'Blusa Santa Rita',
-        price: 49,
-        description: 'Blazer de silueta relajada y mangas largas con bolsillos decorativos.',
-        material: '100% Algodón',
-        color: 'Rosa Multicolor'
+        id: 5,
+        handle: 'blusa-mamounia',
+        title: 'Blusa Mamounia',
+        price: 25,
+        image: 'blusa-mamounia.jpg',
+        description: 'Blusa con escote en V y tiras que cruzan en espalda con capas irregulares.',
+        material: '100% Poliester',
+        color: 'Naranja, Azul, Beige'
     };
 
     const loadProduct = new Promise((resolve, reject) => {
@@ -41,7 +43,7 @@ function ItemDetailContainer() {
                     <>
                         <h1 className="col-12 d-lg-none mb-4 text-center">{ product.title }</h1>
                         <div className="col-12 col-lg-6 mb-4 mb-lg-0">
-                            <img src="https://via.placeholder.com/500x600.jpg" className="img-fluid card-img-top" alt={ product.title }/>
+                            <img src={ '/images/'+product.image } className="img-fluid card-img-top" alt={ product.title }/>
                         </div>
                         <div className="col-12 col-lg-6">
                             <h1 className="d-none d-lg-block mb-5">{ product.title }</h1>
