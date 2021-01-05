@@ -5,14 +5,14 @@ import ItemList from '../common/ItemList/ItemList';
 function Category() {
     const { categoryHandle } = useParams();
     return(
-        <div className="container">
+        <section className="container" id="category">
             <div className="row">
                 <div className="col-12">
                     <h1 className="text-center">Categoría {categoryHandle}</h1>
                     <ItemList />
                 </div>
             </div>
-        </div>
+        </section>
     );
 }
 

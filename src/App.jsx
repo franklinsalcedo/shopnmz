@@ -3,7 +3,8 @@ import NavBar from './components/common/NavBar/NavBar';
 import Footer from './components/common/Footer/Footer';
 import FeaturedProducts from './components/FeaturedProducts/FeaturedProducts';
 import Category from './components/Category/Category';
-import ItemDetailContainer from './components/common/ItemDetailContainer/ItemDetailContainer';
+import ItemDetail from './components/ItemDetail/ItemDetail';
+import Cart from './components/Cart/Cart';
 
 function App() {
   return (
@@ -17,7 +18,10 @@ function App() {
           <Category />
         </Route>
         <Route path="/producto/:productHandle">
-          <ItemDetailContainer />
+          <ItemDetail />
+        </Route>
+        <Route path="/cart">
+          <Cart />
         </Route>
       </Switch>
       <Footer />

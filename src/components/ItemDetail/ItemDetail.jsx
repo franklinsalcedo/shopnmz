@@ -1,8 +1,8 @@
 import { useState,useEffect} from 'react';
-import ItemCount from '../ItemCount/ItemCount';
-import './ItemDetailContainer.scss';
+import ItemCount from '../common/ItemCount/ItemCount';
+import './ItemDetail.scss';
 
-function ItemDetailContainer() {
+function ItemDetail() {
     const [product, setProduct] = useState();
     const data = {
         id: 5,
@@ -65,4 +65,4 @@ function ItemDetailContainer() {
     );
 }
 
-export default ItemDetailContainer;
+export default ItemDetail;

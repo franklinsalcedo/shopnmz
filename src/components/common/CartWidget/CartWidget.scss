@@ -3,11 +3,15 @@
     font-size: 35px;
     position: relative;
     transition: color 300ms;
+    cursor: pointer;
     &:hover {
         color: #ff7d00;
         .total-items-counter {
             color: #ff7d00;
         }
+    }
+    svg {
+        vertical-align: top;
     }
     .total-items-counter {
         color: #333333;
@@ -20,16 +24,46 @@
         display: block;
         border-radius: 10px;
         position: absolute;
-        top: 25px;
-        right: 9px;
+        top: 13px;
+        right: 10px;
+    }
+}
+
+#slidecart {
+    background: #F5F5F5;
+    height: 100%;
+    width: 350px;
+    position: fixed;
+    top: 0;
+    right: -350px;
+    z-index: 999;
+    transition: all 400ms ease;
+    &.open {
+        right: 0;
+        box-shadow: -10px 0px 5px 0px rgba(51,51,51,0.2);
+    }
+    .header {
+        border-bottom: 1px solid #cccccc;
+        position: relative;
+        h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 20px;
+        }
+        .close {
+            font-size: 30px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
     }
 }
 
 @media (min-width: 1025px) {
     .icon-cart {
         .total-items-counter {
-            top: 32px;
-            right: 17px;
+            top: 13px;
+            right: 9px;
         }
     }
 }

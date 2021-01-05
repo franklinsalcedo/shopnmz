@@ -1,9 +1,15 @@
 import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import './ItemCount.scss';
 
 function ItemCount(props){
     let initial = props.initial;
     const [count, setCount] = useState(initial);
+    const history = useHistory();
+
+    const handledClickAdd = (e) => {
+        history.push('/cart');
+    }
 
     return (
         <div className="item-count mx-auto mx-lg-0">
@@ -12,7 +18,7 @@ function ItemCount(props){
                 <span className="quantity">{ count }</span>
                 <button className="btn-plus" onClick={() => setCount((count < props.stock) ? count + 1 : count)}>+</button>
             </div>
-            <button className="btn btn-dark">Agregar al carrito</button>
+            <button className="btn btn-dark" onClick={ handledClickAdd }>Agregar al carrito</button>
         </div>
     );
 }

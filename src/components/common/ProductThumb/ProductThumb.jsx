@@ -13,7 +13,6 @@ function ProductThumb(props) {
                     <div className="text-center card-text">
                         <h3><NavLink to={{ pathname: `/producto/${ props.handle }` }}>{ props.title }</NavLink></h3>
                         <p>$USD { props.price }</p>
-                        <ItemCount stock={8} initial={0} />
                     </div>
                 </div>
             </div>
