@@ -1,38 +1,22 @@
 import { useState,useEffect} from 'react';
+import { useParams } from 'react-router-dom';
 import ItemCount from '../common/ItemCount/ItemCount';
+import { products } from '../../products';
 import './ItemDetail.scss';
 
 function ItemDetail() {
-    const [product, setProduct] = useState();
-    const data = {
-        id: 5,
-        handle: 'blusa-mamounia',
-        title: 'Blusa Mamounia',
-        price: 25,
-        image: 'blusa-mamounia.jpg',
-        description: 'Blusa con escote en V y tiras que cruzan en espalda con capas irregulares.',
-        material: '100% Poliester',
-        color: 'Naranja, Azul, Beige'
-    };
-
-    const loadProduct = new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve(data);
-        }, 2000);
+    const {productHandle} = useParams();
+    const [product, setProduct] = useState(null);
+    
+    const getProduct = new Promise((resolve, reject) => {
+        const selectProduct = products.filter(item => item.handle === productHandle);
+        resolve(selectProduct[0]);
     });
 
-    const getProduct = async () => {
-        try {
-            const result = await loadProduct;
-            setProduct(result);
-        }
-        catch {
-            alert('Error cargando el producto');
-        }
-    }
-
     useEffect(() => {
-        getProduct();
+        getProduct
+        .then(response => setProduct(response))
+        .catch(error => console.log(error));
     });
 
     return(
@@ -48,7 +32,7 @@ function ItemDetail() {
                         <div className="col-12 col-lg-6">
                             <h1 className="d-none d-lg-block mb-5">{ product.title }</h1>
                             <p className="price">${ product.price }</p>
-                            <ItemCount stock={8} initial={0} />
+                            <ItemCount stock={8} initial={1} itemId={ product.id } />
                             <div className="py-5 description">
                                 <h3>Descripción</h3>
                                 <p>{ product.description }</p>
