@@ -8,16 +8,9 @@ function ItemList(props) {
     const [items, setItems] = useState([]);
     const listproducts = products;
 
-    const getProducts = new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve(listproducts);
-        }, 2000);
-    });
-
     const getProductsFromDB = async () => {
         try {
-            const result = await getProducts;
-            setItems(result);
+            setItems(listproducts);
         }
         catch {
             alert('Error recuperando los productos');
@@ -35,7 +28,7 @@ function ItemList(props) {
                     <>
                         {
                             items.slice(0,limit).map((item, index) => (
-                                <ProductThumb id={item.id} title={item.title} price={item.price} handle={item.handle} image={item.image} />
+                                <ProductThumb key={index} id={item.id} title={item.title} price={item.price} handle={item.handle} image={item.image} />
                             ))
                         }
                     </>

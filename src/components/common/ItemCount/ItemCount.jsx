@@ -1,5 +1,6 @@
 import { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
+import { products } from '../../../products';
 import { Store } from '../../../store';
 import './ItemCount.scss';
 

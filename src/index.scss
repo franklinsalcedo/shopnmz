@@ -4,12 +4,19 @@
 html {
   height: 100%;
   position: relative;
+  margin-bottom: 100px;
   body {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Oswald', serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     margin: 0;
     margin-bottom: 53px;
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: 'Playfair';
+    }
   }
 }
 

@@ -6,6 +6,7 @@ import FeaturedProducts from './components/FeaturedProducts/FeaturedProducts';
 import Category from './components/Category/Category';
 import ItemDetail from './components/ItemDetail/ItemDetail';
 import Cart from './components/Cart/Cart';
+import Checkout from './components/Checkout';
 import { Store } from './store';
 
 function App() {
@@ -31,6 +32,9 @@ function App() {
           </Route>
           <Route path="/cart">
             <Cart />
+          </Route>
+          <Route exact path="/checkout">
+            <Checkout />
           </Route>
         </Switch>
         <Footer />
