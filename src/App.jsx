@@ -27,7 +27,7 @@ function App() {
           <Route path="/categoria/:categoryHandle">
             <Category />
           </Route>
-          <Route path="/producto/:productHandle">
+          <Route path="/producto/:productId">
             <ItemDetail />
           </Route>
           <Route path="/cart">

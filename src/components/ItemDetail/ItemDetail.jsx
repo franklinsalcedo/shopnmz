@@ -1,23 +1,30 @@
 import { useState,useEffect} from 'react';
 import { useParams } from 'react-router-dom';
 import ItemCount from '../common/ItemCount/ItemCount';
-import { products } from '../../products';
+import { getFirestore } from '../../firebase';
 import './ItemDetail.scss';
 
 function ItemDetail() {
-    const {productHandle} = useParams();
-    const [product, setProduct] = useState(null);
-    
-    const getProduct = new Promise((resolve, reject) => {
-        const selectProduct = products.filter(item => item.handle === productHandle);
-        resolve(selectProduct[0]);
-    });
+    const db = getFirestore();
+    const [message, setMessage] = useState('Cargando...'); 
+    const { productId } = useParams();
+    const [product, setProduct] = useState();
 
     useEffect(() => {
-        getProduct
-        .then(response => setProduct(response))
-        .catch(error => console.log(error));
-    });
+        const itemCollection = db.collection('products');
+        const item = itemCollection.doc(productId);
+        item.get()
+        .then((doc) => {
+            if(!doc.exists) {
+                setMessage('El producto que busca no existe. Intente de nuevo con otro.');
+                return;
+            }
+            setProduct(doc.data());
+        })
+        .catch((error) => {
+            setMessage('No se puedo cargar el producto.');
+        })
+    },[]);
 
     return(
         <div className="container item-detail">
@@ -42,7 +49,7 @@ function ItemDetail() {
                         </div>
                     </>
                     :
-                    <p className="col-12 text-center py-5">Cargando...</p>
+                    <p className="col-12 text-center py-5">{ message }</p>
                 }
             </div>
         </div>

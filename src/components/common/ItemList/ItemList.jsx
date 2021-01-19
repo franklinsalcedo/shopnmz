@@ -1,24 +1,37 @@
 import { useState,useEffect } from 'react';
 import ProductThumb from '../ProductThumb/ProductThumb';
+import { getFirestore } from '../../../firebase';
 import './ItemList.scss';
-import { products } from '../../../products';
 
 function ItemList(props) {
     let limit = props.quantity;
+    const db = getFirestore();
     const [items, setItems] = useState([]);
-    const listproducts = products;
+    const [message, setMessage] = useState('Cargando...');
 
-    const getProductsFromDB = async () => {
-        try {
-            setItems(listproducts);
-        }
-        catch {
-            alert('Error recuperando los productos');
-        }
+    const getProducts = () => {
+        const itemCollection = db.collection("products");
+        let arr = [];
+        itemCollection.get().then((docs) => {
+            if(docs.size === 0) {
+                setMessage('Disculpa, no tenemos productos destacados en este momento.');
+            }
+            docs.forEach(doc => {
+                arr.push({
+                    id: doc.id,
+                    data: doc.data()
+                });
+            })
+            setItems(arr);
+            //setItems(querySnapshot.docs.map(doc => doc.data()));
+        }).catch((error) => {
+            setMessage('Disculpa, hubo un error cargando los productos');
+            //console.log("Error searching items", error);
+        })
     }
 
     useEffect(() => {
-        getProductsFromDB();
+        getProducts();
     });
 
     return (
@@ -27,13 +40,15 @@ function ItemList(props) {
                 items.length ?
                     <>
                         {
-                            items.slice(0,limit).map((item, index) => (
-                                <ProductThumb key={index} id={item.id} title={item.title} price={item.price} handle={item.handle} image={item.image} />
+                            items.slice(0,limit).map((item) => (
+                                <ProductThumb key={item.id} id={item.id} title={item.data.title} price={item.data.price} handle={item.data.handle} image={item.data.image} />
                             ))
                         }
                     </>
                 :
-                    <p className="col-12 text-center py-5">Cargando...</p>
+                    <p className="col-12 text-center py-5">
+                        { message }
+                    </p>
             }
         </div>
     );
