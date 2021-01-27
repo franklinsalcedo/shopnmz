@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import NavBar from './components/common/NavBar/NavBar';
+import NavBar from './components/common/NavBar';
 import Footer from './components/common/Footer/Footer';
 import FeaturedProducts from './components/FeaturedProducts/FeaturedProducts';
 import Category from './components/Category/Category';

@@ -10,7 +10,7 @@ function ItemList(props) {
     const [message, setMessage] = useState('Cargando...');
 
     const getProducts = () => {
-        const itemCollection = db.collection("products");
+        const itemCollection = db.collection('products');
         let arr = [];
         itemCollection.get().then((docs) => {
             if(docs.size === 0) {
@@ -28,11 +28,12 @@ function ItemList(props) {
             setMessage('Disculpa, hubo un error cargando los productos');
             //console.log("Error searching items", error);
         })
+        console.log('list items');
     }
 
     useEffect(() => {
         getProducts();
-    });
+    },[]);
 
     return (
         <div className="row py-3 py-md-5">
