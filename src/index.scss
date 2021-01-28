@@ -1,12 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap');
+@import 'src/assets/variables.scss';
 
 html {
   height: 100%;
   position: relative;
   margin-bottom: 100px;
   body {
-    font-family: 'Oswald', serif;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    line-height: 21px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     margin: 0;
@@ -15,12 +17,34 @@ html {
     h2,
     h3,
     h4 {
-      font-family: 'Playfair';
+      font-weight: 700;
+      font-size: 20px;
+      text-transform: uppercase;
+      line-height: 30px;
+    }
+    h2 {
+      font-size: 18px;
+      line-height: 28px;
+      &::before {
+        content: '';
+        background: #cccccc;
+        width: 100%;
+        height: 1px;
+        position: absolute;
+        left: 0;
+        top: 0.7em;
+      }
+      span {
+        background: #FFFFFF;
+        padding: 0 20px;
+        position: relative;
+        z-index: 1;
+      }
+    }
+    h3,
+    h4 {
+      font-size: 16px;
+      line-height: 26px;
     }
   }
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
 }

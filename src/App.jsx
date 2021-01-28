@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import NavBar from './components/common/NavBar';
 import Footer from './components/common/Footer/Footer';
-import FeaturedProducts from './components/FeaturedProducts/FeaturedProducts';
+import Home from './components/Home';
 import Category from './components/Category/Category';
 import ItemDetail from './components/ItemDetail/ItemDetail';
 import Cart from './components/Cart/Cart';
@@ -22,7 +22,7 @@ function App() {
         <NavBar />
         <Switch>
           <Route exact path="/">
-            <FeaturedProducts />
+            <Home />
           </Route>
           <Route path="/categoria/:categoryHandle">
             <Category />

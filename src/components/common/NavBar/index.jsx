@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { getFirestore } from '../../../firebase'
-import CartWidget from '../CartWidget/CartWidget';
+import CartWidget from '../../Cart/CartWidget';
 import './NavBar.scss';
 import { RiMenu2Fill } from 'react-icons/ri';
 import Logo from '../../../assets/logo-nmz.png';
@@ -26,7 +26,6 @@ function NavBar() {
         .catch((error) => {
             console.log(error);
         })
-        console.log('nav');
     }
 
     useEffect(() => {
@@ -34,32 +33,36 @@ function NavBar() {
     },[])
 
     return (
-        <header className="mb-5">
-            <div className="container-fluid">
-                <div className="row d-flex py-4">
-                    <div className="mr-auto mx-3 d-lg-none menu-icon-mobile">
+        <header>
+            <div className="container">
+                <div className="row py-3">
+                    <div className="mr-auto ml-3 d-lg-none menu-icon-mobile">
                         <RiMenu2Fill />
                     </div>
-                    <div className="col-4 col-md-2 offset-md-1 offset-lg-5 my-0 pt-md-1 pt-lg-0 text-center logo">
+                    <div className="col-4 pt-2 text-center text-lg-left logo">
                         <NavLink to="/">
                             <img src={Logo} alt="Shop NMZ" className="img-fluid" />
                         </NavLink>
                     </div>
-                    <div className="ml-auto align-self-center">
+                    <div className="ml-auto pt-2 align-self-center">
                         <CartWidget/>
                     </div>
                 </div>
             </div>
-            <nav id="mainMenu" className="d-none d-lg-block container-fluid">
-                <div className="col-12">
-                    <ul className="nav justify-content-center">
-                        <li className="nav-item"><NavLink to="/" className="nav-link" exact>Inicio</NavLink></li>
-                        {
-                            categories.map((category) => (
-                                <li className="nav-item"><NavLink to="/categoria/blusas/" className="nav-link">{category.title}</NavLink></li>
-                            ))
-                        }
-                    </ul>
+            <nav id="mainMenu" className="d-none d-lg-block">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-12">
+                            <ul className="nav">
+                                <li className="nav-item"><NavLink to="/" className="nav-link" exact>Inicio</NavLink></li>
+                                {
+                                    categories.map((category) => (
+                                        <li className="nav-item"><NavLink to="/categoria/blusas/" className="nav-link">{category.title}</NavLink></li>
+                                    ))
+                                }
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </nav>
         </header>

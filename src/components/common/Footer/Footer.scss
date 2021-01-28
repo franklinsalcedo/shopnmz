@@ -1,7 +1,9 @@
+@import '../../../assets/variables.scss';
+
 footer {
-    color: #777777;
-    background: #333333;
-    font-size: 14px;
+    color: #FFFFFF;
+    background: $dark-gray;
+    font-size: 11px;
     width: 100%;
     position: fixed;
     bottom: 0;

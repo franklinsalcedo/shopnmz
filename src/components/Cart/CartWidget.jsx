@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useContext } from 'react';
-import { Store } from '../../../store';
-import { HiOutlineShoppingBag } from 'react-icons/hi';
+import { Store } from '../../store';
+import { BiShoppingBag } from 'react-icons/bi';
 import { IoCloseCircleOutline } from 'react-icons/io5';
 import './CartWidget.scss';
 
@@ -15,7 +15,7 @@ function CartWidget() {
                 <span className="total-items-counter">
                     { data.quantity }
                 </span>
-                <HiOutlineShoppingBag />
+                <BiShoppingBag />
             </div>
             <div id="slidecart" className={ open ? " open" : null }>
                 <div className="px-4 py-3 header">

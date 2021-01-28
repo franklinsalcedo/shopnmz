@@ -1,3 +1,5 @@
+@import '../../../assets/variables.scss';
+
 header {
     .logo {
         img {
@@ -5,29 +7,35 @@ header {
         }
     }
     .menu-icon-mobile {
-        font-size: 34px;
+        font-size: 31px;
         font-weight: bold;
     }
     #mainMenu {
-        background-color: #333333;
-        font-size: 18px;
+        background-color: $dark-gray;
+        font-size: 13px;
+        text-transform: uppercase;
         padding: 5px 0;
         a {
             color: #FFFFFF;
+            margin: 8px 30px;
+            padding: 2px 0;
             position: relative;
             transition: all 100ms;;
+            &:first-child {
+                margin-left: 0;
+            }
             &:before,
             &:after {
                 content: "";
                 position: absolute;
                 bottom: 0;
                 width: 0px;
-                height: 2px;
+                height: 1px;
                 margin: 5px 0 0;
                 transition: all 100ms;;
-                transition-duration: 0.75s;
+                transition-duration: 0.5s;
                 opacity: 0;
-                background-color: #ff7d00;
+                background-color: #FFFFFF;
                 left: 0;
             }
             &:hover {
@@ -39,7 +47,7 @@ header {
             }
         }
         a.active {
-            color: #ff7d00;
+            color: #FFFFFF;
             &:before,
             &:after {
                 width: 100%;

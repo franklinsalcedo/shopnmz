@@ -1,13 +1,15 @@
+@import '../../assets/variables.scss';
+
 .icon-cart {
-    color: #333333;
+    color: $dark-gray;
     font-size: 35px;
     position: relative;
     transition: color 300ms;
     cursor: pointer;
     &:hover {
-        color: #ff7d00;
+        color: $rose;
         .total-items-counter {
-            color: #ff7d00;
+            color: $rose;
         }
     }
     svg {
@@ -62,7 +64,7 @@
 @media (min-width: 1025px) {
     .icon-cart {
         .total-items-counter {
-            top: 13px;
+            top: 12px;
             right: 9px;
         }
     }
