@@ -6,24 +6,33 @@ import './ItemDetail.scss';
 
 function ItemDetail() {
     const db = getFirestore();
-    const [message, setMessage] = useState('Cargando...'); 
-    const { productId } = useParams();
     const [product, setProduct] = useState();
+    const [message, setMessage] = useState('Cargando...');
+    const { productHandle } = useParams();
 
-    useEffect(() => {
-        const itemCollection = db.collection('products');
-        const item = itemCollection.doc(productId);
+    const getProduct = () => {
+        const item = db.collection('products').where('handle', '==', productHandle);
+        let arr = [];
         item.get()
-        .then((doc) => {
-            if(!doc.exists) {
-                setMessage('El producto que busca no existe. Intente de nuevo con otro.');
-                return;
+        .then((docs) => {
+            if(docs.size === 0) {
+                setMessage('Disculpa, no tenemos productos destacados en este momento.');
             }
-            setProduct(doc.data());
+            docs.forEach(function(doc) {
+                arr.push({
+                    id: doc.id,
+                    data: doc.data()
+                });
+                setProduct(arr[0]);
+            });
         })
-        .catch((error) => {
-            setMessage('No se puedo cargar el producto.');
-        })
+        .catch(function(error) {
+            setMessage('Disculpa, hubo un error cargando el producto');
+        });
+    }
+    
+    useEffect(() => {
+        getProduct();
     },[]);
 
     return(
@@ -32,19 +41,19 @@ function ItemDetail() {
                 {
                     product ?
                     <>
-                        <h1 className="col-12 d-lg-none mb-4 text-center">{ product.title }</h1>
+                        <h1 className="col-12 d-lg-none mb-4 text-center">{ product.data.title }</h1>
                         <div className="col-12 col-lg-6 mb-4 mb-lg-0">
-                            <img src={ '/images/'+product.image } className="img-fluid card-img-top" alt={ product.title }/>
+                            <img src={ '/images/'+product.data.image } className="img-fluid card-img-top" alt={ product.data.title }/>
                         </div>
                         <div className="col-12 col-lg-6">
-                            <h1 className="d-none d-lg-block mb-5">{ product.title }</h1>
-                            <p className="price">${ product.price }</p>
+                            <h1 className="d-none d-lg-block mb-5">{ product.data.title }</h1>
+                            <p className="price">${ product.data.price }</p>
                             <ItemCount stock={8} initial={1} itemId={ product.id } />
                             <div className="py-5 description">
                                 <h3>Descripción</h3>
-                                <p>{ product.description }</p>
-                                <p><strong>Material: </strong>{ product.material }</p>
-                                <p><strong>Color: </strong>{ product.color }</p>
+                                <p>{ product.data.description }</p>
+                                <p><strong>Material: </strong>{ product.data.material }</p>
+                                <p><strong>Color: </strong>{ product.data.color }</p>
                             </div>
                         </div>
                     </>

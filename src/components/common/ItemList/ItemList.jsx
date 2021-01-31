@@ -12,7 +12,8 @@ function ItemList(props) {
     const getProducts = () => {
         const itemCollection = db.collection('products');
         let arr = [];
-        itemCollection.get().then((docs) => {
+        itemCollection.get()
+        .then((docs) => {
             if(docs.size === 0) {
                 setMessage('Disculpa, no tenemos productos destacados en este momento.');
             }
