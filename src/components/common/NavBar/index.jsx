@@ -56,8 +56,8 @@ function NavBar() {
                             <ul className="nav">
                                 <li className="nav-item"><NavLink to="/" className="nav-link" exact>Inicio</NavLink></li>
                                 {
-                                    categories.map((category) => (
-                                        <li className="nav-item"><NavLink to={{ pathname: `/categoria/${ category.handle }` }} className="nav-link">{category.title}</NavLink></li>
+                                    categories.map((category,i) => (
+                                        <li className="nav-item" key={i}><NavLink to={{ pathname: `/categoria/${ category.handle }` }} className="nav-link">{category.title}</NavLink></li>
                                     ))
                                 }
                             </ul>

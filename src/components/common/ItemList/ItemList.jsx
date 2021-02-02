@@ -1,4 +1,5 @@
 import { useState,useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import ProductThumb from '../ProductThumb/ProductThumb';
 import { getFirestore } from '../../../firebase';
 import './ItemList.scss';
@@ -6,16 +7,19 @@ import './ItemList.scss';
 function ItemList(props) {
     let limit = props.quantity;
     const db = getFirestore();
+    const { categoryHandle } = useParams();
+    const [category, setCategory] = useState();
     const [items, setItems] = useState([]);
     const [message, setMessage] = useState('Cargando...');
 
-    const getProducts = () => {
-        const itemCollection = db.collection('products');
+    const getProducts = async (cat) => {
+        setMessage('Cargando...');
+        let itemCollection = (cat) ? db.collection("products").where("category", "==", cat) : db.collection('products');
         let arr = [];
         itemCollection.get()
         .then((docs) => {
             if(docs.size === 0) {
-                setMessage('Disculpa, no tenemos productos destacados en este momento.');
+                setMessage('Disculpa, no tenemos productos que mostrar en este momento.');
             }
             docs.forEach(doc => {
                 arr.push({
@@ -31,10 +35,10 @@ function ItemList(props) {
         })
         console.log('list items');
     }
-
+    
     useEffect(() => {
-        getProducts();
-    },[]);
+        getProducts(categoryHandle);
+    },[categoryHandle]);
 
     return (
         <div className="row py-3 py-md-5">

@@ -1,21 +1,37 @@
-import { useState, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
-import { products } from '../../../products';
+import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
+import ToggleButton from 'react-bootstrap/ToggleButton';
+import Button from 'react-bootstrap/Button';
+import InputGroup from 'react-bootstrap/InputGroup';
+import FormControl from 'react-bootstrap/FormControl';
 import { Store } from '../../../store';
 import './ItemCount.scss';
 
 function ItemCount(props){
-    let initial = props.initial;
-    const [count, setCount] = useState(initial);
+    const [sizes, setSizes] = useState(props.itemSizes);
+    const [size, setSize] = useState();
+    const [count, setCount] = useState(1);
     const [data, setData] = useContext(Store);
     const history = useHistory();
 
     const handleClickMinus =  (e) => {
-        setCount((count > 0) ? count - 1 : count);
+        setCount((count > 1) ? count - 1 : count);
     }
 
     const handleClickPlus = (e) => {
-        setCount((count < props.stock) ? count + 1 : count);
+        setCount((count < sizes.[size]) ? count + 1 : count);
+    }
+
+    const handleChangeQty = (e) => {
+       
+    }
+
+    const handleSize = siz => {
+        setSize(siz);
+        if(count > sizes.[siz]) {
+            setCount(sizes.[siz]);
+        }
     }
 
     const handledClickAdd = (e) => {
@@ -35,19 +51,59 @@ function ItemCount(props){
                 quantity: data.quantity + count
             });
         }
+        //localStorage.setItem('datacart', JSON.stringify(data));
         setCount(1);
-        history.push('/cart');
+        //history.push('/cart');
     }
 
-    console.log(data);
+    //console.log(localStorage.getItem('datacart'));
+
+    useEffect(() => {
+        if(sizes.s > 0) {
+            setSize('s');
+        } else if(sizes.m > 0) {
+            setSize('m');
+        } else if(sizes.l > 0) {
+            setSize('l');
+        } else if(sizes.xl > 0) {
+            setSize('xl');
+        }
+    }, [])
 
     return (
         <div className="item-count mx-auto mx-lg-0">
-            <div className="quantity-item">
-                <button className="btn-minus" onClick={ handleClickMinus }>-</button>
-                <span className="quantity">{ count }</span>
-                <button className="btn-plus" onClick={ handleClickPlus }>+</button>
-            </div>
+            <strong className="d-block mb-2">Tallas disponibles: </strong>
+            {
+                Object.keys(sizes).length > 0 &&
+                    <ToggleButtonGroup className="mb-3" name="size" type="radio" value={ size } onChange={ handleSize }>
+                        {
+                            sizes.s > 0 &&
+                                <ToggleButton className="btn-secondary" value="s">S</ToggleButton>
+                        }
+                        {
+                            sizes.m > 0 &&
+                                <ToggleButton className="btn-secondary" value="m">M</ToggleButton>
+                        }
+                        {
+                            sizes.l > 0 &&
+                                <ToggleButton className="btn-secondary" value="l">L</ToggleButton>
+                        }
+                        {
+                            sizes.xl > 0 &&
+                                <ToggleButton className="btn-secondary" value="xl">XL</ToggleButton>
+                        }
+                    </ToggleButtonGroup>
+            }        
+            <InputGroup className="mb-3">
+                <InputGroup.Prepend>
+                    <Button variant="outline-secondary" onClick={ handleClickMinus }>-</Button>
+                </InputGroup.Prepend>
+                <FormControl aria-describedby="basic-addon1" className="text-center" value={ count } onChange={ handleChangeQty } />
+                <InputGroup.Append>
+                    <Button variant="outline-secondary" onClick={ handleClickPlus }>+</Button>
+                </InputGroup.Append>
+            </InputGroup>
+            
             <button className="btn btn-dark" onClick={ handledClickAdd }>Agregar al carrito</button>
         </div>
     );
