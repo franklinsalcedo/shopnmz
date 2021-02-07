@@ -35,28 +35,33 @@ function ItemCount(props){
     }
 
     const handledClickAdd = (e) => {
-        if(data.items.some(item => item.itemId === props.itemId)){
-            const elementsIndex = data.items.findIndex(item => item.itemId === props.itemId);
-            let newArray = data.items;
-            newArray[elementsIndex] = { ...newArray[elementsIndex], qty: newArray[elementsIndex].qty + count };
+        if(data.items.some(item => item.itemId === props.itemId && item.size === size)){
+            const elementIndex = data.items.findIndex(item => item.itemId === props.itemId);
+            let update = data.items;
+            update[elementIndex] = { ...update[elementIndex], qty: update[elementIndex].qty + count, subtotal: (update[elementIndex].qty + count) * props.itemPrice };
             setData({
                 ...data,
-                items: newArray,
-                quantity: data.quantity + count
+                qtyItems: data.qtyItems + count
             });
         } else {
             setData({
                 ...data,
-                items: [...data.items,{itemId: props.itemId,qty: count}],
-                quantity: data.quantity + count
+                items: [
+                    ...data.items,
+                    {
+                        itemId: props.itemId,
+                        qty: count,
+                        size: size,
+                        subtotal: props.itemPrice * count
+                    }
+                ],
+                qtyItems: data.qtyItems + count
             });
         }
-        //localStorage.setItem('datacart', JSON.stringify(data));
+        
         setCount(1);
-        //history.push('/cart');
+        history.push('/cart');
     }
-
-    //console.log(localStorage.getItem('datacart'));
 
     useEffect(() => {
         if(sizes.s > 0) {

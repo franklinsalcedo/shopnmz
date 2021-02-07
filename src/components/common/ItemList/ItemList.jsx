@@ -8,7 +8,6 @@ function ItemList(props) {
     let limit = props.quantity;
     const db = getFirestore();
     const { categoryHandle } = useParams();
-    const [category, setCategory] = useState();
     const [items, setItems] = useState([]);
     const [message, setMessage] = useState('Cargando...');
 

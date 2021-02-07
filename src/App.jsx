@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import NavBar from './components/common/NavBar';
 import Footer from './components/common/Footer/Footer';
@@ -12,8 +12,8 @@ import { Store } from './store';
 function App() {
   const [data, setData] = useState({
     items: [],
-    quantity: 0,
-    freeShipping: 50
+    qtyItems: 0,
+    totalAmount: 0
   });
 
   return (

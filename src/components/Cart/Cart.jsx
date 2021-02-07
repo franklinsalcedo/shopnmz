@@ -1,41 +1,68 @@
 import { useState, useEffect, useContext } from 'react';
-import ItemsCart from './ItemsCart';
-import { products } from '../../products';
+import { useHistory } from 'react-router-dom';
+import ItemCart from './ItemCart';
 import { Store } from '../../store';
 import './Cart.scss';
 
 
 function Cart() {
+    const history = useHistory();
     const [data, setData] = useContext(Store);
-    const [listProducts] = useState(products);
-    const [selects, setSelects] = useState({});
+    const [products, setProducts] = useState(data.items);
+    const [total, setTotal] = useState(0);
 
-    const getStoreData = () => {
-        console.log(data);
-        var objItemCart = [];
-        data.items.forEach((item) => {
-            const sel = listProducts.filter(product => product.id === item.itemId);
-            objItemCart = [...objItemCart,{productData: sel, qty: item.qty}];
-        });
-        setSelects(objItemCart);
-        //console.log(selects);  
-        //let sel = listProducts.filter(product => product.id === item.itemId);
+    const handleCheckout = (e) => {
+        history.push('/checkout');
     }
-    console.log(selects);
+
+    const getItems = (obj) => {
+        console.log('getItems',obj);
+        let rowItems = Object.keys(products).map(key => (<ItemCart key={key} details={products[key]} />));
+        return (rowItems);
+    }
+
+    const getTotal = () => {
+        var totalTemp = 0;
+        Object.keys(data.items).map(key => (
+            totalTemp = totalTemp + data.items[key].subtotal
+        ))
+        if(totalTemp !== data.totalAmount) {
+            setData({
+                ...data,
+                totalAmount: totalTemp
+            });
+            setTotal(totalTemp);
+        }
+    }
+
     useEffect(() => {
-        getStoreData();
-    },[])
+        setProducts(data.items);
+        getTotal();
+    },[data,total])
 
     return (
-        <section className="container" id="cart">
+        <section className="py-5 container" id="cart">
             <div className="row mb-5">
                 <div className="col-12">
-                    <h1 className="text-center">Cart</h1>
+                    <h1 className="text-center">Shopping Cart</h1>
                 </div>
             </div>
             {
-                selects.length ?
-                    <ItemsCart list={ selects } />
+                Object.keys(products).length > 0 ?
+                    <div>
+                        { getItems(products) }
+                        
+                        <div className="row my-3 py-3 total">
+                            <div className="col-12 text-right">
+                                Total a pagar: <strong>${ total }</strong>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-12 text-lg-right">
+                                <button onClick={ handleCheckout } className="btn btn-dark">Ir al Checkout</button>
+                            </div>
+                        </div>
+                    </div>
                 :
                     <div className="row">
                         <div className="col-12 text-center">

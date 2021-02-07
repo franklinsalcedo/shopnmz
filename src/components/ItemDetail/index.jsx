@@ -11,7 +11,6 @@ function ItemDetail() {
     const [message, setMessage] = useState('Cargando...');
     const { productHandle } = useParams();
 
-
     const getProduct = () => {
         const item = db.collection('products').where('handle', '==', productHandle);
         let arr = []
@@ -54,11 +53,12 @@ function ItemDetail() {
                             <p className="price">${ product.data.price }</p>
                             <div className="description">
                                 <p>{ product.data.description }</p>
-                                <p>
-                                    <strong>Material: </strong>{ product.data.material }
-                                </p>
+                                {
+                                    product.data.material &&
+                                        <p><strong>Material: </strong>{ product.data.material }</p>
+                                }
                             </div>
-                            <ItemCount initial={ 1 } itemId={ product.id } itemSizes={ product.data.size } />
+                            <ItemCount initial={ 1 } itemId={ product.id } itemSizes={ product.data.size } itemPrice={ product.data.price } />
                         </div>
                     </>
                     :
