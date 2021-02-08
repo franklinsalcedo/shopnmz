@@ -9,7 +9,7 @@ function Cart() {
     const history = useHistory();
     const [data, setData] = useContext(Store);
     const [products, setProducts] = useState(data.items);
-    const [total, setTotal] = useState(0);
+    const [total, setTotal] = useState(data.totalAmount);
 
     const handleCheckout = (e) => {
         history.push('/checkout');

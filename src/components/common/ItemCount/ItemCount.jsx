@@ -60,7 +60,6 @@ function ItemCount(props){
         }
         
         setCount(1);
-        history.push('/cart');
     }
 
     useEffect(() => {

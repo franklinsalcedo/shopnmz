@@ -3,9 +3,9 @@ import { useHistory } from 'react-router-dom';
 import { getFirestore } from '../../firebase';
 import { Store } from '../../store';
 import { FaTrashAlt } from 'react-icons/fa';
-import './ItemCart.scss'; 
+import './ItemCartWidget.scss'; 
 
-function ItemCart(props) {
+function ItemCartWidget(props) {
     const db = getFirestore();
     const history = useHistory();
     const objProduct = props.details;
@@ -52,26 +52,18 @@ function ItemCart(props) {
     },[data]);
     
     return (
-        <div className="row mb-4 h-100 row-items">
+        <div className="row mb-4 row-items-widget">
             {
                 product ?
                     <>
-                        <div className="col-12 col-lg-1 p-0">
+                        <div className="col-4 p-0">
                             <img src={ '/images/'+product.image } className="img-fluid" alt={ product.title }/>
                         </div>
-                        <div className="col-7 col-lg-5">
-                            <p className="pt-4"><strong>{ product.title }</strong></p>
+                        <div className="col-7">
+                            <p className="pt-3"><strong>{ product.title }</strong></p>
                             <p>Talla: <strong>{ objProduct.size.toUpperCase() }</strong></p>
-                            <p>Precio: <strong>${ product.price }</strong></p>
-                        </div>
-                        <div className="col-6 col-lg-3 pt-3 d-lg-flex align-items-center item-quantity">
-                            <div className=" quantity-item">
-                                {/* <button className="btn-minus" onClick={ handleClickMinus }>-</button> */}
-                                <span className="quantity">Cant.: { objProduct.qty }</span>
-                                {/* <button className="btn-plus" onClick={ handleClickPlus }>+</button> */}
-                            </div>
-                        </div>
-                        <div className="col-6 col-lg-2 pt-3 d-lg-flex align-items-center justify-content-end text-right item-total">
+                            <p className="mb-4">Precio: <strong>${ product.price }</strong></p>
+                            <p className="quantity"><strong>Cantidad: { objProduct.qty }</strong></p>
                             <p><strong>Total: ${ product.price*objProduct.qty }</strong></p>
                         </div>
                         <span className="ico-remove" onClick={ handleRemove }>
@@ -87,4 +79,4 @@ function ItemCart(props) {
     );
 }
 
-export default ItemCart;
+export default ItemCartWidget;

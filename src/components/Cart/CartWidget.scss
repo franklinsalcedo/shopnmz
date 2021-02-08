@@ -31,10 +31,25 @@
     }
 }
 
+#cover {
+    background-color: rgba(51,51,51,0.5);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 998;
+    display: none;
+    &.open {
+        display: block;
+    }
+}
+
 #slidecart {
     background: #F5F5F5;
     height: 100%;
     width: 350px;
+    padding-bottom: 14%;
     position: fixed;
     top: 0;
     right: -350px;
@@ -58,6 +73,19 @@
             right: 10px;
             cursor: pointer;
         }
+    }
+    .list-items {
+        height: 100%;
+        overflow: auto;
+    }
+    .footer-widget {
+        background: $gray;
+        font-size: 20px;
+        width: 100%;
+        padding: 25px 0;
+        position: absolute;
+        bottom: 0;
+        right: 15px;
     }
 }
 
