@@ -8,4 +8,10 @@ footer {
     position: fixed;
     bottom: 0;
     z-index: 997;
+    a {
+        color: #FFFFFF;
+        &:hover {
+            color: $gray;
+        }
+    }
 }

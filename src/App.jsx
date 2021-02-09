@@ -7,6 +7,7 @@ import Category from './components/Category';
 import ItemDetail from './components/ItemDetail';
 import Cart from './components/Cart/Cart';
 import Checkout from './components/Checkout';
+import ConsultOrder from './components/ConsultOrder';
 import Error404 from './components/common/Error404';
 import { Store } from './store';
 
@@ -43,6 +44,9 @@ function App() {
           </Route>
           <Route exact path="/checkout">
           { data.totalAmount !== 0 ? <Checkout /> : <Redirect to="/" /> }
+          </Route>
+          <Route path="/order">
+            <ConsultOrder />
           </Route>
           <Route>
             <Error404 />
