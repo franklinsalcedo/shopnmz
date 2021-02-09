@@ -16,7 +16,11 @@ function App() {
     totalAmount: 0
   });
 
-  
+  useEffect(() => {
+    if(sessionStorage.cartNMZ !== '') {
+      setData(JSON.parse(sessionStorage.cartNMZ));
+    }
+  },[data]);
 
   return (
     <Store.Provider value={[data, setData]}>
