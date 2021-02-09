@@ -58,7 +58,7 @@ function ItemDetail() {
                                         <p><strong>Material: </strong>{ product.data.material }</p>
                                 }
                             </div>
-                            <ItemCount initial={ 1 } itemId={ product.id } itemSizes={ product.data.size } itemPrice={ product.data.price } />
+                            <ItemCount initial={ 1 } itemId={ product.id } itemSizes={ product.data.size } itemPrice={ product.data.price } nameProduct={ product.data.title} />
                         </div>
                     </>
                     :

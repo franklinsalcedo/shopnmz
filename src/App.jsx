@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import NavBar from './components/common/NavBar';
 import Footer from './components/common/Footer/Footer';
 import Home from './components/Home';
@@ -15,6 +15,19 @@ function App() {
     qtyItems: 0,
     totalAmount: 0
   });
+
+  console.log(sessionStorage.cartNMZ)
+
+  useEffect(() => {
+    if(sessionStorage.cartNMZ !== '') {
+      setData(JSON.parse(sessionStorage.cartNMZ));
+    }
+  },[]);
+  
+  
+  //JSON.parse
+  //sessionStorage.removeItem('cartNMZ');
+  //console.log(sessionStorage.cartNMZ);
 
   return (
     <Store.Provider value={[data, setData]}>
@@ -34,7 +47,7 @@ function App() {
             <Cart />
           </Route>
           <Route exact path="/checkout">
-            <Checkout />
+          { data.totalAmount !== 0 ? <Checkout /> : <Redirect to="/" /> }
           </Route>
         </Switch>
         <Footer />

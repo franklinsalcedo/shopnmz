@@ -30,7 +30,6 @@ function ItemCartWidget(props) {
             items: newArr,
             qtyItems: data.qtyItems - objProduct.qty
         });
-        
     }
 
     const getProduct = (id) => {
@@ -49,6 +48,7 @@ function ItemCartWidget(props) {
 
     useEffect(() => {
         getProduct(objProduct.itemId);
+        sessionStorage.setItem('cartNMZ', JSON.stringify(data));
     },[data]);
     
     return (

@@ -22,7 +22,7 @@ function CartWidget() {
     }
 
     const showAddCart = (o=false) => {
-        if(window.location.href.indexOf("/cart") < 0) {
+        if(window.location.href.indexOf("/cart") < 0 && window.location.href.indexOf("/checkout") < 0) {
             if(o)
                 setOpen(true);
             else
@@ -36,7 +36,6 @@ function CartWidget() {
     }
 
     const getItems = (obj) => {
-        console.log('getItems',obj);
         let rowItems = Object.keys(products).map(key => (<ItemCartWidget key={key} details={products[key]} />));
         return (rowItems);
     }
@@ -51,8 +50,8 @@ function CartWidget() {
                 ...data,
                 totalAmount: totalTemp
             });
-            setTotal(totalTemp);
         }
+        setTotal(totalTemp);
     }
 
     useEffect(() => {

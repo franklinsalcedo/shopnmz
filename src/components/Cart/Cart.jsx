@@ -31,14 +31,14 @@ function Cart() {
                 ...data,
                 totalAmount: totalTemp
             });
-            setTotal(totalTemp);
         }
+        setTotal(totalTemp);
     }
 
     useEffect(() => {
         setProducts(data.items);
         getTotal();
-    },[data,total])
+    },[data,total]);
 
     return (
         <section className="py-5 container" id="cart">

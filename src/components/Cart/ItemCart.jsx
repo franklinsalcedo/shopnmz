@@ -49,6 +49,7 @@ function ItemCart(props) {
 
     useEffect(() => {
         getProduct(objProduct.itemId);
+        sessionStorage.setItem('cartNMZ', JSON.stringify(data));
     },[data]);
     
     return (

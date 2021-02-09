@@ -38,7 +38,7 @@ function ItemCount(props){
         if(data.items.some(item => item.itemId === props.itemId && item.size === size)){
             const elementIndex = data.items.findIndex(item => item.itemId === props.itemId);
             let update = data.items;
-            update[elementIndex] = { ...update[elementIndex], qty: update[elementIndex].qty + count, subtotal: (update[elementIndex].qty + count) * props.itemPrice };
+            update[elementIndex] = { ...update[elementIndex], qty: update[elementIndex].qty + count, subtotal: (update[elementIndex].qty + count) * props.itemPrice }; 
             setData({
                 ...data,
                 qtyItems: data.qtyItems + count
@@ -50,6 +50,7 @@ function ItemCount(props){
                     ...data.items,
                     {
                         itemId: props.itemId,
+                        nameProduct: props.nameProduct,
                         qty: count,
                         size: size,
                         subtotal: props.itemPrice * count
@@ -58,7 +59,6 @@ function ItemCount(props){
                 qtyItems: data.qtyItems + count
             });
         }
-        
         setCount(1);
     }
 
@@ -72,7 +72,11 @@ function ItemCount(props){
         } else if(sizes.xl > 0) {
             setSize('xl');
         }
-    }, [])
+    }, []);
+
+    useEffect(() => {
+        sessionStorage.setItem('cartNMZ', JSON.stringify(data));
+    }, [data])
 
     return (
         <div className="item-count mx-auto mx-lg-0">
