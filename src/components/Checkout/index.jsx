@@ -41,7 +41,6 @@ const Checkout = () => {
     }
 
     useEffect(() => {
-        //console.log(order);
         //let field = size.l;
         //let decrement = firebase.firestore.FieldValue.increment(1);
         
