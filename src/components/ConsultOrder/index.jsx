@@ -95,7 +95,7 @@ const ConsultOrder = () => {
                                                 {
                                                     orderData.items.map((item,key) => 
                                                         <tr key={ key }>
-                                                            <th scope="row">{ item.itemId }</th>
+                                                            <th scope="row">{ item.nameProduct }</th>
                                                             <td className="text-center">{ item.size.toUpperCase() }</td>
                                                             <td className="text-center">{ item.qty }</td>
                                                             <td className="text-center">${ item.subtotal }</td>

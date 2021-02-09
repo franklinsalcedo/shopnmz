@@ -4,7 +4,6 @@ import { getFirestore } from '../../firebase';
 import firebase from 'firebase/app';
 import { Store } from '../../store';
 import './checkout.scss';
-import { BiHomeAlt } from 'react-icons/bi';
 
 const Checkout = () => {
     const db = getFirestore();
@@ -13,7 +12,7 @@ const Checkout = () => {
     const [data, setData] = useContext(Store);
     const [products, setProducts] = useState(data.items);
     const [total, setTotal] = useState(data.totalAmount);
-    const [orderId, setOrderId] = useState({});
+    const [orderId, setOrderId] = useState('');
     
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -61,6 +60,14 @@ const Checkout = () => {
                     <h1 className="text-center">Checkout</h1>
                 </div>
             </div>
+            {
+                orderId !== '' &&
+                    <div className="row mb-5">
+                        <div className="col-12">
+                            <h5 className="alert alert-success text-center">Su número de orden es: { orderId }</h5>
+                        </div>
+                    </div>
+            }
             <div className="row">
                 <div className="col-12 col-lg-7">
                     <h2>Información de contacto</h2>
