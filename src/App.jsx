@@ -17,10 +17,9 @@ function App() {
   });
 
   useEffect(() => {
-    if(sessionStorage.cartNMZ !== '') {
+    if(sessionStorage.length > 0)
       setData(JSON.parse(sessionStorage.cartNMZ));
-    }
-  },[data]);
+  },[]);
 
   return (
     <Store.Provider value={[data, setData]}>
