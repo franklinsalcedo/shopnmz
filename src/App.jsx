@@ -16,18 +16,7 @@ function App() {
     totalAmount: 0
   });
 
-  console.log(sessionStorage.cartNMZ)
-
-  useEffect(() => {
-    if(sessionStorage.cartNMZ !== '') {
-      setData(JSON.parse(sessionStorage.cartNMZ));
-    }
-  },[]);
   
-  
-  //JSON.parse
-  //sessionStorage.removeItem('cartNMZ');
-  //console.log(sessionStorage.cartNMZ);
 
   return (
     <Store.Provider value={[data, setData]}>
