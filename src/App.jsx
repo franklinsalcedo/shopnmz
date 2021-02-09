@@ -17,8 +17,10 @@ function App() {
   });
 
   useEffect(() => {
-    if(sessionStorage.length > 0)
-      setData(JSON.parse(sessionStorage.cartNMZ));
+    if(sessionStorage.length > 0){
+      let jsonStorage = JSON.parse(sessionStorage.cartNMZ);
+      setData(jsonStorage);
+    }
   },[]);
 
   return (
