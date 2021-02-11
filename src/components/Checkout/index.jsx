@@ -30,6 +30,12 @@ const Checkout = () => {
             orders.add(newOrder)
             .then(({ id }) => {
                 setOrderId(id);
+                setData({
+                    items: [],
+                    qtyItems: 0,
+                    totalAmount: 0
+                });
+                sessionStorage.removeItem('cartNMZ');
             })
             .catch(err => {
                 console.log(err);
