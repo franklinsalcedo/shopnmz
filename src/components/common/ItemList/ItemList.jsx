@@ -5,16 +5,28 @@ import { getFirestore } from '../../../firebase';
 import './ItemList.scss';
 
 function ItemList(props) {
-    let limit = props.quantity;
     const db = getFirestore();
-    const { categoryHandle } = useParams();
+    const category = props.category;
+    const featured = props.featured;
+    const limit = props.quantity;
     const [items, setItems] = useState([]);
     const [message, setMessage] = useState('Cargando...');
 
     const getProducts = async (cat) => {
         setMessage('Cargando...');
-        let itemCollection = (cat) ? db.collection("products").where("category", "==", cat) : db.collection('products');
-        let arr = [];
+        let itemCollection, 
+            arr = [];
+        
+        if (cat) {
+            itemCollection = db.collection("products").where("category", "==", cat);
+        } else if (featured) {
+            itemCollection = db.collection("products").where("featured", "==", true);
+        } else if (cat && featured) {
+            itemCollection = db.collection("products").where("category", "==", cat).where("featured", "==", true);
+        } else {
+            itemCollection = db.collection('products');
+        }
+
         itemCollection.get()
         .then((docs) => {
             if(docs.size === 0) {
@@ -30,14 +42,12 @@ function ItemList(props) {
             //setItems(querySnapshot.docs.map(doc => doc.data()));
         }).catch((error) => {
             setMessage('Disculpa, hubo un error cargando los productos');
-            //console.log("Error searching items", error);
         })
-        console.log('list items');
     }
-    
+
     useEffect(() => {
-        getProducts(categoryHandle);
-    },[categoryHandle]);
+        getProducts(category);
+    },[category]);
 
     return (
         <div className="row py-3 py-md-5">

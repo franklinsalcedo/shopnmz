@@ -1,0 +1,10 @@
+.lookbook {
+    .crop {
+        max-height: 300px;
+        overflow: hidden;
+        img {
+            margin-top: -50%;
+            transform: translateY(10%);
+        }
+    }
+}

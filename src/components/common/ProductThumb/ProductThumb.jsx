@@ -1,6 +1,5 @@
 import { NavLink } from 'react-router-dom';
 import './ProductThumb.scss';
-import ItemCount from '../ItemCount/ItemCount';
 
 function ProductThumb(props) {
     return (

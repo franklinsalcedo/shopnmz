@@ -7,7 +7,7 @@ function FeaturedProducts() {
             <div className="row">
                 <h2 className="col-12 text-center"><span>Productos Destacados</span></h2>
             </div>
-            <ItemList quantity={4} />
+            <ItemList quantity={4} featured="true" />
         </div>
     );
 };

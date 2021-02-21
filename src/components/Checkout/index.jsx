@@ -14,6 +14,12 @@ const Checkout = () => {
     const [total, setTotal] = useState(data.totalAmount);
     const [orderId, setOrderId] = useState('');
     
+    const maxLengthCheck = (object) => {
+        if (object.target.value.length > object.target.maxLength) {
+            object.target.value = object.target.value.slice(0, object.target.maxLength)
+        }
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
         const form = e.currentTarget
@@ -104,19 +110,19 @@ const Checkout = () => {
                             </div>
                             <div className="col-12 col-lg-6 from-group">
                                 <label>Código postal:</label>
-                                <input type="text" className="form-control" name="zip" required />
+                                <input type="number" className="form-control" name="zip" maxLength="5" onInput={ maxLengthCheck } required />
                             </div>
                         </div>
                         <div className="form-group">
                             <label>Teléfono</label>
-                            <input type="tel" className="form-control" name="phone" required />
+                            <input type="tel" className="form-control" name="phone" maxLength="12" onInput={ maxLengthCheck } required />
                         </div>
                         <h3>Datos de Pago</h3>
                         <small>Todas las transacciones son seguras y encriptadas.</small>
                         <div className="form-row">
                             <div className="col-12 col-lg-6 form-group">
                                 <label>Número de tarjeta:</label>
-                                <input className="form-control" type="number" name="cardnumber" required />
+                                <input className="form-control" type="number" name="cardnumber" maxLength="12" onInput={ maxLengthCheck } required />
                             </div>
                             <div className="col-12 col-lg-6 form-group">
                                 <label>&nbsp;</label>
@@ -137,7 +143,7 @@ const Checkout = () => {
                             </div>
                             <div className="col-12 col-lg-6 form-group">
                                 <label>Código de seguridad:</label>
-                                <input className="form-control" type="text" name="cardcode" required />
+                                <input className="form-control" type="number" name="cardcode" maxLength="3" onInput={ maxLengthCheck } required />
                             </div>
                         </div>
                         <div className="form-group text-right">
